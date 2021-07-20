@@ -1,4 +1,4 @@
-import './App.css';
+import './App.less';
 import AddCompany from './components/AddCompany';
 
 function App() {

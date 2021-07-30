@@ -13,7 +13,6 @@ export default function CompanyBenefit() {
         <Row justify="center">
             <Col flex="auto" lg={12}>
                 <label className="label" htmlFor="">Perks & Benefits</label>
-                {/* TODO: add custom option feature */}
                 <Select
                     mode="multiple"
                     placeholder="Pick or add benefits"

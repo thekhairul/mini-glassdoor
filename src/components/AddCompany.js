@@ -22,8 +22,7 @@ const AddComppany = () => {
         <Row justify="center">
             <Col flex="auto" lg={12}>
                 <label className="label" htmlFor="">Established at</label>
-                {/* FIXME: restrict year to current year */}
-                <DatePicker size="large" picker="year" placeholder="Select year"/>
+                <DatePicker size="large" picker="year" placeholder="Select year" disabledDate={current => current.year() > new Date().getFullYear()}/>
             </Col>
         </Row>
         <Row justify="center">

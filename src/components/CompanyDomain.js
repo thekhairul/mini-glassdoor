@@ -13,7 +13,6 @@ export default function CompanyDomain() {
         <Row justify="center">
             <Col flex="auto" lg={12}>
                 <label className="label" htmlFor="">Industry Domain</label>
-                {/* TODO: add custom option feature */}
                 <Select
                     mode="multiple"
                     placeholder="Pick one or multiple domain"

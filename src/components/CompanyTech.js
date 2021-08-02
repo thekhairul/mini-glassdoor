@@ -12,7 +12,7 @@ export default function CompanyTech() {
 
     return (
         <Row justify="center">
-            <Col flex="auto" lg={12}>
+            <Col flex="auto" lg={24}>
                 <label className="label" htmlFor="">Common Tech Used in Company</label>
                 <Select
                     mode="multiple"

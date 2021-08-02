@@ -11,7 +11,7 @@ export default function CompanyBenefit() {
 
     return (
         <Row justify="center">
-            <Col flex="auto" lg={12}>
+            <Col flex="auto" lg={24}>
                 <label className="label" htmlFor="">Perks & Benefits</label>
                 <Select
                     mode="multiple"

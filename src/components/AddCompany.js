@@ -1,5 +1,5 @@
 import { GlobalOutlined, HomeOutlined, UserOutlined } from '@ant-design/icons';
-import { Col, DatePicker, Input, Radio, Rate, Row, Space } from 'antd';
+import { Button, DatePicker, Form, Input, Radio, Rate, Space } from 'antd';
 import { useState } from 'react';
 import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css';
@@ -16,83 +16,71 @@ const AddComppany = () => {
     const [convertedText, setConvertedText] = useState("Some default content");
 
     return ( <div id="add-company" className="add-company">
-        <Row justify="center">
-            <Col flex="auto" lg={24}>
-                <label className="label" htmlFor="">Name of Company</label>
+        <Form layout="vertical" onFinish={(e) => console.log(e)}>
+            <Form.Item label="Name of Company" name="companyName" required>
                 <Input size="large" placeholder="Company Name" prefix={<UserOutlined />} />
-            </Col>
-        </Row>
-        <Row justify="center">
-            <Col flex="auto" lg={24}>
-                <label className="label" htmlFor="">Established at</label>
+            </Form.Item>
+
+            <Form.Item label="Established at" name="companyEstablishedAt" required>
                 <DatePicker size="large" picker="year" placeholder="Select year" disabledDate={current => current.year() > new Date().getFullYear()}/>
-            </Col>
-        </Row>
-        <Row justify="center">
-            <Col flex="auto" lg={24}>
-                <label className="label" htmlFor="">Company Address</label>
+            </Form.Item>
+
+            <Form.Item label="Company Address" name="companyAddress">
                 <TextArea placeholder="Company Address" allowClear prefix={<HomeOutlined />}/>
-            </Col>
-        </Row>
-        <Row justify="center">
-            <Col flex="auto" lg={24}>
-                <label className="label" htmlFor="">Company Website</label>
+            </Form.Item>
+
+            <Form.Item label="Company Website" name="companyWebsite" required>
                 <Input size="large" placeholder="Company website" prefix={<GlobalOutlined />} />
-            </Col>
-        </Row>
-        <Row justify="center">
-            <Col flex="auto" lg={24}>
-                <label className="label" htmlFor="">Number of Employees</label>
+            </Form.Item>
+
+            <Form.Item label="Number of Employees" name="employeeNumber" required>
                 <Radio.Group defaultValue="medium" buttonStyle="solid">
                     <Radio.Button value="small">Less than 10</Radio.Button>
                     <Radio.Button value="medium">10-50</Radio.Button>
                     <Radio.Button value="large">50-100</Radio.Button>
                     <Radio.Button value="giant">100+</Radio.Button>
                 </Radio.Group>
-            </Col>
-        </Row>
-        <CompanyTech />
-        <Row justify="center">
-            <Col flex="auto" lg={24}>
-                <label className="label" htmlFor="">Salary structure</label>
+            </Form.Item>
+
+            <CompanyTech />
+
+            <Form.Item label="Salary structure" name="salary" required>
                 <Radio.Group defaultValue="competitive" buttonStyle="solid">
                     <Radio.Button value="below">Below average</Radio.Button>
                     <Radio.Button value="average">Average</Radio.Button>
                     <Radio.Button value="competitive">Competitive</Radio.Button>
                     <Radio.Button value="international">International standard</Radio.Button>
                 </Radio.Group>
-            </Col>
-        </Row>
-        <CompanyBenefit />
-        <CompanyDomain />
-        <Row justify="center">
-            <Col flex="auto" lg={24}>
-                <label className="label" htmlFor="">Management Style</label>
+            </Form.Item>
+
+            <CompanyBenefit />
+            <CompanyDomain />
+
+            <Form.Item label="Management Style" name="managementStyle">
                 <Radio.Group onChange={(e) => setManagementStyle(e.target.value)} value={managementStyle}>
                     <Space direction="vertical">
                         <Radio value={'startup'}>Startup</Radio>
                         <Radio value={'corporate'}>Corporate</Radio>
                     </Space>
                 </Radio.Group>
-            </Col>
-        </Row>
-        <Row justify="center">
-            <Col flex="auto" lg={24}>
-                <label className="label" htmlFor="">How likely will you recommend?</label>
+            </Form.Item>
+
+            <Form.Item label="How likely will you recommend?" name="rating">
                 <Rate tooltips={reviewParams} onChange={setReviewStar} value={reviewStar} />
-            </Col>
-        </Row>
-        <Row justify="center">
-            <Col flex="auto" lg={24}>
-                <label className="label" htmlFor="">Give your feedback on this company</label>
+            </Form.Item>
+
+            <Form.Item label="Your review" name="review">
                 <ReactQuill
                     theme='snow'
                     value={convertedText}
                     onChange={setConvertedText}
-                    style={{minHeight: '300px'}}
                 />
-            </Col>
-        </Row>
+            </Form.Item>
+
+            <Form.Item>
+                <Button type="primary" htmlType="submit">Submit</Button>
+            </Form.Item>
+        </Form>
     </div> );
 }
  

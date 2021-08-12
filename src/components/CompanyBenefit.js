@@ -1,4 +1,4 @@
-import { Col, Row, Select } from 'antd';
+import { Form, Select } from 'antd';
 import { useState } from "react";
 import { useAntDropdownRender } from './hooks';
 
@@ -10,24 +10,21 @@ export default function CompanyBenefit() {
     const dropdownRender = useAntDropdownRender(setBenifitList);
 
     return (
-        <Row justify="center">
-            <Col flex="auto" lg={24}>
-                <label className="label" htmlFor="">Perks & Benefits</label>
-                <Select
-                    mode="multiple"
-                    placeholder="Pick or add benefits"
-                    value={selectedBenefits}
-                    onChange={setBenefitsSelection}
-                    dropdownRender={dropdownRender}
-                    style={{ width: '100%' }}
-                >
-                    {benefitList.map((item, idx) => (
-                        <Select.Option key={idx} value={item}>
-                            {item}
-                        </Select.Option>
-                    ))}
-                </Select>
-            </Col>
-        </Row>
+        <Form.Item label="Perks & Benefits" name="benefits">
+            <Select
+                mode="multiple"
+                placeholder="Pick or add benefits"
+                value={selectedBenefits}
+                onChange={setBenefitsSelection}
+                dropdownRender={dropdownRender}
+                style={{ width: '100%' }}
+            >
+                {benefitList.map((item, idx) => (
+                    <Select.Option key={idx} value={item}>
+                        {item}
+                    </Select.Option>
+                ))}
+            </Select>
+        </Form.Item>
     )
 }

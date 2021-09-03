@@ -11,13 +11,23 @@ const { TextArea } = Input;
 const reviewParams = ['Not a chance', 'Somewhat unlikely', 'Maybe', 'Very likely', 'Absolutely'];
 
 const AddComppany = () => {
+    const [form] = Form.useForm();
     const [managementStyle, setManagementStyle] = useState('startup');
     const [reviewStar, setReviewStar] = useState();
     const [convertedText, setConvertedText] = useState("Some default content");
 
+    const onFinish = (values) => {
+        console.log('Success:', values);
+    };
+
+    const onFinishFailed = (errorInfo) => {
+        console.log('Failed:', errorInfo);
+    };
+
     return ( <div id="add-company" className="add-company">
-        <Form layout="vertical" onFinish={(e) => console.log(e)}>
-            <Form.Item label="Name of Company" name="companyName" required>
+        <Form form={form} name="addCompany" layout="vertical" initialValues={{remember: true}} onFinish={onFinish}
+      onFinishFailed={onFinishFailed}>
+            <Form.Item label="Name of Company" name="companyName" rules={[{ required: true, message: 'Please provide company name' }]}>
                 <Input size="large" placeholder="Company Name" prefix={<UserOutlined />} />
             </Form.Item>
 

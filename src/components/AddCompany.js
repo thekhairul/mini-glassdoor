@@ -14,7 +14,7 @@ const AddComppany = () => {
     const [form] = Form.useForm();
     const [managementStyle, setManagementStyle] = useState('startup');
     const [reviewStar, setReviewStar] = useState();
-    const [convertedText, setConvertedText] = useState("Some default content");
+    const [convertedText, setConvertedText] = useState("");
 
     const onFinish = (values) => {
         console.log('Success:', values);
@@ -66,7 +66,7 @@ const AddComppany = () => {
             <CompanyBenefit />
             <CompanyDomain />
 
-            <Form.Item label="Management Style" name="managementStyle">
+            <Form.Item label="Management Style" name="managementStyle" initialValue="startup">
                 <Radio.Group onChange={(e) => setManagementStyle(e.target.value)} value={managementStyle}>
                     <Space direction="vertical">
                         <Radio value={'startup'}>Startup</Radio>
@@ -79,9 +79,10 @@ const AddComppany = () => {
                 <Rate tooltips={reviewParams} onChange={setReviewStar} value={reviewStar} />
             </Form.Item>
 
-            <Form.Item label="Your review" name="review">
+            <Form.Item label="Your review" name="review" initialValue="">
                 <ReactQuill
                     theme='snow'
+                    placeholder="Your review of the company"
                     value={convertedText}
                     onChange={setConvertedText}
                 />

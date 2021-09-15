@@ -31,7 +31,7 @@ const AddComppany = () => {
                 <Input size="large" placeholder="Company Name" prefix={<UserOutlined />} />
             </Form.Item>
 
-            <Form.Item label="Established at" name="companyEstablishedAt" required>
+            <Form.Item label="Established at" name="companyEstablishedAt" rules={[{ required: true, message: 'Please provide company establishment year' }]}>
                 <DatePicker size="large" picker="year" placeholder="Select year" disabledDate={current => current.year() > new Date().getFullYear()}/>
             </Form.Item>
 
@@ -39,12 +39,12 @@ const AddComppany = () => {
                 <TextArea placeholder="Company Address" allowClear prefix={<HomeOutlined />}/>
             </Form.Item>
 
-            <Form.Item label="Company Website" name="companyWebsite" required>
+            <Form.Item label="Company Website" name="companyWebsite" rules={[{ required: true, message: 'Please provide company website' }, {type: 'url'}]}>
                 <Input size="large" placeholder="Company website" prefix={<GlobalOutlined />} />
             </Form.Item>
 
-            <Form.Item label="Number of Employees" name="employeeNumber" required>
-                <Radio.Group defaultValue="medium" buttonStyle="solid">
+            <Form.Item label="Number of Employees" name="employeeNumber" initialValue="medium">
+                <Radio.Group buttonStyle="solid">
                     <Radio.Button value="small">Less than 10</Radio.Button>
                     <Radio.Button value="medium">10-50</Radio.Button>
                     <Radio.Button value="large">50-100</Radio.Button>
@@ -54,8 +54,8 @@ const AddComppany = () => {
 
             <CompanyTech />
 
-            <Form.Item label="Salary structure" name="salary" required>
-                <Radio.Group defaultValue="competitive" buttonStyle="solid">
+            <Form.Item label="Salary structure" name="salary" initialValue="competitive">
+                <Radio.Group buttonStyle="solid">
                     <Radio.Button value="below">Below average</Radio.Button>
                     <Radio.Button value="average">Average</Radio.Button>
                     <Radio.Button value="competitive">Competitive</Radio.Button>
@@ -75,7 +75,7 @@ const AddComppany = () => {
                 </Radio.Group>
             </Form.Item>
 
-            <Form.Item label="How likely will you recommend?" name="rating">
+            <Form.Item label="How likely will you recommend this company as workplace?" name="rating" rules={[{ required: true, message: 'Please provide your rating' }]}>
                 <Rate tooltips={reviewParams} onChange={setReviewStar} value={reviewStar} />
             </Form.Item>
 

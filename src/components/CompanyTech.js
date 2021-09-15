@@ -11,7 +11,7 @@ export default function CompanyTech() {
     const unselectedTechs = techList.filter(tech => !selectedTech.includes(tech));
 
     return (
-        <Form.Item label="Common Tech Used in Company" name="techStack" required>
+        <Form.Item label="Common Tech Used in Company" name="techStack" rules={[{ required: true, message: 'Please provide company tech stack' }]}>
             <Select
                 mode="multiple"
                 placeholder="Inserted are removed"
